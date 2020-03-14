@@ -4,6 +4,9 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.inject.Inject;
+
+import org.apache.ibatis.io.ResolverUtil.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -11,11 +14,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import nani.domain.service.HelloService;
+
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HelloController {
+
+    @Inject
+    HelloService helloService;
+
+    private final String TEST_STR = "Hello?";
 
     private static final Logger logger = LoggerFactory.getLogger(HelloController.class);
 
@@ -33,7 +43,7 @@ public class HelloController {
 
         model.addAttribute("serverTime", formattedDate);
 
-        model.addAttribute("test", "ﾃｽｰﾄ");
+        model.addAttribute("test", helloService.execute(TEST_STR));
 
         return "welcome/home";
     }
