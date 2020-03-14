@@ -174,7 +174,5 @@
 <modules>  <module>nani-env</module>
     <module>nani-domain</module>
     <module>nani-web</module>
-    <module>nani-initdb</module>
-    <module>nani-selenium</module>
   </modules>
 </project>
