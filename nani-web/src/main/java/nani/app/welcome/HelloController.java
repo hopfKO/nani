@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -59,7 +60,7 @@ public class HelloController {
      */
     @RequestMapping(value = "/api/{id}", method = { RequestMethod.GET })
     @ResponseBody
-    public Anime apiGet(String id, Model model) {
+    public Anime apiGet(@PathVariable("id") String id, Model model) {
         List<Anime> animes = new ArrayList<>();
         Anime inuyasha = new Anime();
         inuyasha.setId("1");
