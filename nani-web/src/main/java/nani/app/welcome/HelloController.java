@@ -1,8 +1,13 @@
 package nani.app.welcome;
 
 import java.text.DateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
+import java.util.Optional;
 
 import javax.inject.Inject;
 
@@ -13,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import nani.domain.service.HelloService;
 
@@ -46,6 +52,23 @@ public class HelloController {
         model.addAttribute("test", helloService.execute(TEST_STR));
 
         return "welcome/home";
+    }
+
+    /**
+     * 
+     */
+    @RequestMapping(value = "/api/{id}", method = { RequestMethod.GET })
+    @ResponseBody
+    public Anime apiGet(String id, Model model) {
+        List<Anime> animes = new ArrayList<>();
+        Anime inuyasha = new Anime();
+        inuyasha.setId("1");
+        inuyasha.setTitle("犬夜叉");
+        inuyasha.setAirDate(LocalDate.now());
+
+        Optional<Anime> oAnime = animes.stream().filter(anime -> Objects.equals(anime.getId(), id)).findFirst();
+
+        return oAnime.orElse(null);
     }
 
 }
