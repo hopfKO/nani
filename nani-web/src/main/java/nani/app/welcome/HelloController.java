@@ -67,6 +67,8 @@ public class HelloController {
         inuyasha.setTitle("犬夜叉");
         inuyasha.setAirDate(LocalDate.now());
 
+        animes.add(inuyasha);
+        
         Optional<Anime> oAnime = animes.stream().filter(anime -> Objects.equals(anime.getId(), id)).findFirst();
 
         return oAnime.orElse(null);
