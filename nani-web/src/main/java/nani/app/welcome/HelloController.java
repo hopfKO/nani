@@ -11,7 +11,6 @@ import java.util.Optional;
 
 import javax.inject.Inject;
 
-import org.apache.ibatis.io.ResolverUtil.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -52,6 +51,8 @@ public class HelloController {
 
         model.addAttribute("test", helloService.execute(TEST_STR));
 
+        model.addAttribute("sakura", "さくら、もゆ");
+
         return "welcome/home";
     }
 
@@ -60,7 +61,7 @@ public class HelloController {
      */
     @RequestMapping(value = "/api/{id}", method = { RequestMethod.GET })
     @ResponseBody
-    public Anime apiGet(@PathVariable("id") String id, Model model) {
+    public Anime apiGet(@PathVariable("id") String id) {
         List<Anime> animes = new ArrayList<>();
         Anime inuyasha = new Anime();
         inuyasha.setId("1");
@@ -68,7 +69,7 @@ public class HelloController {
         inuyasha.setAirDate(LocalDate.now());
 
         animes.add(inuyasha);
-        
+
         Optional<Anime> oAnime = animes.stream().filter(anime -> Objects.equals(anime.getId(), id)).findFirst();
 
         return oAnime.orElse(null);
