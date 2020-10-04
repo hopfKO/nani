@@ -51,7 +51,8 @@ public class HelloController {
 
         model.addAttribute("test", helloService.execute(TEST_STR));
 
-        model.addAttribute("sakura", "さくら、もゆ");
+        model.addAttribute("game1", "さくら、もゆ");
+        model.addAttribute("game2", "Summer Pockets Reflection Blue");
 
         return "welcome/home";
     }
