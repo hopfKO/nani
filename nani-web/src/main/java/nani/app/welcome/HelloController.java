@@ -31,7 +31,7 @@ public class HelloController {
     @Inject
     HelloService helloService;
 
-    private final String TEST_STR = "Hello?";
+    private final String TEST_STR = "エロゲ";
 
     private static final Logger logger = LoggerFactory.getLogger(HelloController.class);
 
